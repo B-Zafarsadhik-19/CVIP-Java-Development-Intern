@@ -1,0 +1,54 @@
+import java.util.Scanner;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
+class FeePaymentSystem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Welcome to the Fee Payment System!");
+        System.out.println("Please enter your name:");
+        String name = sc.nextLine();
+        System.out.println("Please enter your student ID:");
+        String id = sc.nextLine();
+        System.out.println("Please enter the amount you want to pay:");
+        double amount = sc.nextDouble();
+        System.out.println("Please select a payment method:");
+        System.out.println("1. Credit Card");
+        System.out.println("2. Debit Card");
+        System.out.println("3. Net Banking");
+        int choice = sc.nextInt();
+        String paymentMethod = "";
+        switch (choice) {
+            case 1:
+                paymentMethod = "Credit Card";
+                break;
+            case 2:
+                paymentMethod = "Debit Card";
+                break;
+            case 3:
+                paymentMethod = "Net Banking";
+                break;
+            default:
+                System.out.println("Invalid choice.");
+                break;
+        }
+        
+        // Generate transaction number
+        int transactionNumber = (int)(Math.random() * 1000000);
+        
+        // Get current date and time
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        
+        // Display transaction details
+        System.out.println("\nTransaction Details:");
+        System.out.println("Transaction Number: " + transactionNumber);
+        System.out.println("Date and Time: " + formatter.format(date));
+        System.out.println("Name: " + name);
+        System.out.println("Student ID: " + id);
+        System.out.println("Amount Paid: " + amount);
+        System.out.println("Payment Method: " + paymentMethod);
+        
+        System.out.println("\nThank you for using the Fee Payment System, " + name + "!");
+    }
+}
