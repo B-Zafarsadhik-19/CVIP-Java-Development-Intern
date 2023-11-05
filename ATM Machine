@@ -1,0 +1,117 @@
+// Importing the Scanner class for user input
+import java.util.Scanner;
+
+// Creating a class for the ATM interface
+public class ATMInterface {
+
+    // Declaring some variables for storing user data and balance
+    private static String userName = "John Doe";
+    private static int userPIN = 1234;
+    private static double userBalance = 10000.0;
+
+    // Creating a Scanner object for user input
+    private static Scanner scanner = new Scanner(System.in);
+
+    // Defining a method for displaying the main menu and getting user choice
+    public static int displayMenu() {
+        System.out.println("Welcome to the ATM interface, " + userName + ".");
+        System.out.println("Please choose an option from the following:");
+        System.out.println("1. Check balance");
+        System.out.println("2. Withdraw money");
+        System.out.println("3. Deposit money");
+        System.out.println("4. Change PIN");
+        System.out.println("5. Exit");
+        System.out.print("Enter your choice: ");
+        int choice = scanner.nextInt();
+        return choice;
+    }
+
+    // Defining a method for checking the user balance
+    public static void checkBalance() {
+        System.out.println("Your current balance is: " + userBalance + " rupees.");
+    }
+
+    // Defining a method for withdrawing money from the user account
+    public static void withdrawMoney() {
+        System.out.print("Enter the amount you want to withdraw: ");
+        double amount = scanner.nextDouble();
+        if (amount > 0 && amount <= userBalance) {
+            userBalance -= amount;
+            System.out.println("You have successfully withdrawn " + amount + " rupees.");
+            System.out.println("Your new balance is: " + userBalance + " rupees.");
+        } else {
+            System.out.println("Invalid amount. Please try again.");
+        }
+    }
+
+    // Defining a method for depositing money to the user account
+    public static void depositMoney() {
+        System.out.print("Enter the amount you want to deposit: ");
+        double amount = scanner.nextDouble();
+        if (amount > 0) {
+            userBalance += amount;
+            System.out.println("You have successfully deposited " + amount + " rupees.");
+            System.out.println("Your new balance is: " + userBalance + " rupees.");
+        } else {
+            System.out.println("Invalid amount. Please try again.");
+        }
+    }
+
+    // Defining a method for changing the user PIN
+    public static void changePIN() {
+        System.out.print("Enter your current PIN: ");
+        int oldPIN = scanner.nextInt();
+        if (oldPIN == userPIN) {
+            System.out.print("Enter your new PIN: ");
+            int newPIN = scanner.nextInt();
+            if (newPIN != oldPIN) {
+                userPIN = newPIN;
+                System.out.println("You have successfully changed your PIN.");
+            } else {
+                System.out.println("Your new PIN cannot be the same as your old PIN. Please try again.");
+            }
+        } else {
+            System.out.println("Incorrect PIN. Please try again.");
+        }
+    }
+
+    // Defining a method for exiting the program
+    public static void exitProgram() {
+        System.out.println("Thank you for using the ATM interface. Have a nice day!");
+        scanner.close();
+        System.exit(0);
+    }
+
+    // Defining the main method for running the program
+    public static void main(String[] args) {
+
+        // Creating a loop for repeating the menu until the user exits
+        while (true) {
+
+            // Getting the user choice from the menu
+            int choice = displayMenu();
+
+            // Using a switch statement to perform different actions based on the user choice
+            switch (choice) {
+                case 1:
+                    checkBalance();
+                    break;
+                case 2:
+                    withdrawMoney();
+                    break;
+                case 3:
+                    depositMoney();
+                    break;
+                case 4:
+                    changePIN();
+                    break;
+                case 5:
+                    exitProgram();
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+                    break;
+            }
+        }
+    }
+}
